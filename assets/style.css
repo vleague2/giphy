@@ -19,3 +19,7 @@ h1 {
 html, body {
     height: 100%;
 }
+
+body {
+    background-image: url("images/light_grey.png");
+}
