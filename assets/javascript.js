@@ -1,25 +1,48 @@
 // document onload
+// $(document).ready(function() {
 
 // const array of desserts: cheesecake, donuts, cake, cupcake, chocolate, ice cream, croissant, cannoli
-
+const desserts = ["cheesecake", "donuts", "cake", "cupcake", "chocolate", "ice cream", "croissant", "cannoli"];
 
 // SIDEBAR FUNCTIONALITY~~~~~~~~~~~~~~~
 // function makeButtons:
+function makeButtons() {
+    // empty buttons div (so that buttons arent infinitely appending)
+    $("#buttons").empty();
     // for i < desserts.length loop: 
-        // empty buttons div (so that buttons arent infinitely appending)
+    for (i=0; i < desserts.length; i++) {
         // run through array of desserts and create buttons (should be nice bootstrap and i want two per row. should also add dessert names as value attributes)
+        let button = $("<button type='button' class='btn btn-light mr-3 mb-3'>");
+        button.text(desserts[i]);
+        button.val(desserts[i]);
         // append buttons to button div.
-
+        $("#buttons").append(button);
+    }
+}
 
 // call makeButtons
+makeButtons();
 
-// let input = the user's search input
 
 // on click search button
+$("#search").click(function() {
     // clear default event
-    // if input.length > 2
-        // trim input and push input to array and run makeButtons
+    event.preventDefault();
 
+    // let input = the user's search input
+    // trim input
+    let input = $("#searchTerm").val().trim();
+
+    // if input.length > 2
+    if (input.length > 2) {
+        //push input to array and run makeButtons
+        desserts.push(input);
+        makeButtons();
+    }
+})
+
+    
+   
 
 // GIF FUNCTIONALITY~~~~~~~~~~~~~~
 // on click buttons div
@@ -62,4 +85,4 @@
             // row3.append(col)
             // call createCard
 
-        
+// });
