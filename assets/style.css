@@ -1,0 +1,21 @@
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+}
+
+#sidebar {
+    background-color: pink;
+    margin-bottom: -9999px;
+    padding-bottom: 9999px;
+    box-shadow: 1px 1px 5px gray;
+}
+
+.container-fluid {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+html, body {
+    height: 100%;
+}
