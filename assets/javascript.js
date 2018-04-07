@@ -55,13 +55,14 @@ $("#search").click(function() {
 
 // GIF FUNCTIONALITY~~~~~~~~~~~~~~
 // listen for user clicks on any of the dessert buttons
-$(".btn").click(function() {
+$(".btn-light").click(function() {
+    console.log("yes");
 
     // grab the value attribute of the button they click, which will plug into the API request URL
     let keyword = $(this).val();
 
     // set up the URL that will ping the Giphy API, with a spot to pull in the user's keyword
-    let url = "https://api.giphy.com/v1/gifs/search?api_key=9QKf3NFG5b4l6jRUWl3g3bcxd4f1z6wR&q=" + keyword + "&limit=9&offset=0&rating=PG&lang=en";
+    let url = "https://api.giphy.com/v1/gifs/search?api_key=9QKf3NFG5b4l6jRUWl3g3bcxd4f1z6wR&q=" + keyword + "&limit=10&offset=0&rating=PG&lang=en";
 
     // use AJAX to ping the Giphy API
     $.ajax({
