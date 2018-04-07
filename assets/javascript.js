@@ -47,43 +47,59 @@ $("#search").click(function() {
 
 // GIF FUNCTIONALITY~~~~~~~~~~~~~~
 // on click buttons div
+$(".btn").click(function() {
+
     // let keyword = this.value
+    let keyword = $(this).val();
     // let url = API url call + keyword
+    let url = "https://api.giphy.com/v1/gifs/search?api_key=9QKf3NFG5b4l6jRUWl3g3bcxd4f1z6wR&q=" + keyword + "&limit=9&offset=0&rating=PG&lang=en";
     // ajax call to api using URL and GET
-    // then function
+    $.ajax({
+        url: url,
+        method: "GET"
+      }).then(function(response) {
+          console.log(keyword);
+          console.log(url);
+          console.log(response);
 
-        // createCard function:
-            // let card = $("<div class='card'>")
-            // col.append(card)
-            // let cardImg = $("<div class='card-img-top'>")
-            // cardImg attr src of response.PATH.URL[i]
-            // cardImg attr alt text
-            // card.append(cardImg)
-            // let cardBody = $("<div class='card-body'>"")
-            // card.append(cardBody)
-            // let cardText = $("<div class='card-text'>")
-            // cardText.text('Content rated: ' + response.PATH.RATING[i])
-            // cardBody.append(cardText)
+        let row = $("<div class='row'>");
+        $("#gifs").html(row);
+        for (i=0; i < 9; i++) {
+            let card = $("<div class='card mr-4 mb-3' id='gif" + i + "'>");
+            row.append(card);
+            let cardImg = $("<img class='card-img-top'>");
+            cardImg.attr('src', response.data[i].images.fixed_width_still.url);
+            cardImg.attr('data-still', response.data[i].images.fixed_width_still.url);
+            cardImg.attr('data-animate', response.data[i].images.fixed_width.url);
+            cardImg.attr('data-state', 'still');
+            cardImg.attr('class', 'gif');
+            cardImg.attr('alt', response.data[i].title);
+            card.append(cardImg);
+            let cardBody = $("<div class='card-body'>");
+            card.append(cardBody);
+            let cardText = $("<div class='card-text'>");
+            cardText.text('Content rated: ' + response.data[i].rating);
+            cardBody.append(cardText);
 
-        // let row1 = $("div class='row' id='row1'>")
-        // $("#gifs").append(row1)
-        // for loop i = 0 < 3           
-            // let col = $("div class='col-md-4'>")
-            // row1.append(col)
-            // call createCard
+        }
 
-        // let row2 = $("div class='row' id='row2'>")   
-        // $("#gifs").append(row2) 
-        // for loop i = 3 i < 6
-            // let col = $("div class='col-md-4'>")
-            // row2.append(col)
-            // call createCard
+        $(".gif").click(function() {
+            let state = $(this).attr("data-state");
+            console.log(state);
+            if (state == "still") {
+                let animatedGif = $(this).attr("data-animate");
+                $(this).attr("src", animatedGif);
+                $(this).attr("data-state", "animate");
+              }
+        
+              if (state == "animate") {
+                let stillGif = $(this).attr("data-still");
+                $(this).attr("src", stillGif);
+                $(this).attr("data-state", "still");
+              }
+        });
+        });
+    });
 
-        // let row3 = $("div class='row' id='row3'>")   
-        // $("#gifs").append(row3) 
-        // for loop i=6 i<9
-            // let col = $("div class='col-md-4'>")
-            // row3.append(col)
-            // call createCard
-
+    
 });
