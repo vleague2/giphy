@@ -1,39 +1,40 @@
-// document onload
-// $(document).ready(function() {
+// Make sure the document is fully loaded before running code
+$(document).ready(function() {
 
-// const array of desserts: cheesecake, donuts, cake, cupcake, chocolate, ice cream, croissant, cannoli
+// Create a hardcoded list of dessert options 
 const desserts = ["cheesecake", "donuts", "cake", "cupcake", "chocolate", "ice cream", "croissant", "cannoli"];
 
 // SIDEBAR FUNCTIONALITY~~~~~~~~~~~~~~~
-// function makeButtons:
+// set up a function that creates the buttons
 function makeButtons() {
     // empty buttons div (so that buttons arent infinitely appending)
     $("#buttons").empty();
-    // for i < desserts.length loop: 
+    //  run through array of desserts and create buttons
     for (i=0; i < desserts.length; i++) {
-        // run through array of desserts and create buttons (should be nice bootstrap and i want two per row. should also add dessert names as value attributes)
+        // set up a new html button element
         let button = $("<button type='button' class='btn btn-light mr-3 mb-3'>");
+        // set the text of the button to be the name of the dessert
         button.text(desserts[i]);
+        // set the value of the button to also be the name of the dessert
         button.val(desserts[i]);
-        // append buttons to button div.
+        // append buttons to button div
         $("#buttons").append(button);
     }
 }
 
-// call makeButtons
+// Call the makeButtons function to initially create the hardcoded buttons
 makeButtons();
 
-
-// on click search button
+// to add user buttons to the list:
+// set up an onclick function for the Add button
 $("#search").click(function() {
-    // clear default event
+    // clear default event so that it doesn't try to submit a form
     event.preventDefault();
 
-    // let input = the user's search input
-    // trim input
+    // capture the text the user types into the input field & trim off any unnecessary spaces
     let input = $("#searchTerm").val().trim();
 
-    // if input.length > 2
+    // make sure they've entered actual text by setting a min length
     if (input.length > 2) {
         //push input to array and run makeButtons
         desserts.push(input);
@@ -85,4 +86,4 @@ $("#search").click(function() {
             // row3.append(col)
             // call createCard
 
-// });
+});
