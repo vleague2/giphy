@@ -50,13 +50,12 @@ $("#search").click(function() {
     }
 })
 
-    
+
    
 
 // GIF FUNCTIONALITY~~~~~~~~~~~~~~
 // listen for user clicks on any of the dessert buttons
-$(".btn-light").click(function() {
-    console.log("yes");
+$("#buttons").on("click", ".btn-light", function() {
 
     // grab the value attribute of the button they click, which will plug into the API request URL
     let keyword = $(this).val();
